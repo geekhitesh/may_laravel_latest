@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 
+Route::get('/product-category/detail/{product_name}','ProductCategory@detail');
 Route::get('/product-category/all','ProductCategory@all');
 Route::get('/product-category/insert','ProductCategory@insert');
 Route::get('/product-category/update','ProductCategory@update');
