@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ProductCategory;
+use \App\ProductCategory;
 
 class ProductCategoryController extends Controller
 {
@@ -19,9 +19,9 @@ class ProductCategoryController extends Controller
 	
 	public function all()
 	{
-		$product_categories = App\ProductCategory::all();
-		return $product_categories;
-		//return view('product_listing')->with(compact('products'));	
+		$product_categories = ProductCategory::all();
+		//return $product_categories;
+		return view('product_categories_listing')->with(compact('product_categories'));	
 	}
 	
 	public function insert()
