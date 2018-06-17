@@ -38,13 +38,26 @@ Route::get('/test', function () {
     //return  App\User::find(1)->product_categories; // product categories
     //return  App\User::find(1)->product_sub_categories; // product sub categories
 
+
 	
 	//return App\ProductCategory::all()->where('id','1002'); // get product category
 	//return App\ProductCategory::find(1001); // get product category
-    //return App\ProductCategory::find(2)->products; // get products
+    // return App\ProductCategory::find(1001)->products; // get products
 	// return App\ProductCategory::find(2)->user; // get corresponding user
 
+	//return App\ProductSubCategory::all()->where('id','>','1002');
      
+	
+	//return App\Product::find(1001);
+	
+	//return App\Product::find(1001)->productCategory;
+	
+	//return App\Product::find(1002)->packages;
+	
+	//return App\Package::find(1001);
+	
+	return App\Package::find(1001)->products;
+	 
     //return App\Product::all(); // get product
 	//return App\Product::find(1); // get product
 	//return App\Product::find(1)->instances; // get product instances - sold
