@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-
+Route::get('/test-me','TestController@myTest');
 Route::get('/product-category/detail/{product_name}','ProductCategoryController@detail');
 Route::get('/product-category/all','ProductCategoryController@all');
 Route::get('/product-category/insert','ProductCategoryController@insert');
@@ -79,4 +79,13 @@ Route::get('/test', function () {
 	//return App\ProductGroup::find(1); // get package details
 	//return App\ProductGroup::find(2)->products; // get products in a package
 
+});
+
+
+
+Route::middleware(['my_custom_api'])->group(function () {
+	Route::get('/test_mw',function() {
+		return App\Package::find(1001);
+		
+	});
 });
