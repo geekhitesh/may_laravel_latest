@@ -209,6 +209,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 		'CustomHelper' => App\Repositories\CustomHelper::class,
+		'Debug' => App\Repositories\Debug::class,
 
     ],
 

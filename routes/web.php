@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 
 
+Route::get('/test-layout', function () {
+    return view('layout_extend');
+});
+
 Route::get('/test-me','TestController@myTest');
 Route::get('/product-category/detail/{product_name}','ProductCategoryController@detail');
 Route::get('/product-category/all','ProductCategoryController@all');
@@ -89,3 +93,24 @@ Route::middleware(['my_custom_api'])->group(function () {
 		
 	});
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::middleware(['auth'])->group(function () {
+	Route::get('/test_auth',function() {
+		return App\Package::find(1001);
+		
+	});
+	
+});
+
+
+Route::get('/cache/build','CacheController@build');
+
+Route::get('/cache/destroy','CacheController@destroy');
+
+
+Route::get('/use-cache/get-categories','UseCache@getCategories');
