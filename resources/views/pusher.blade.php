@@ -71,9 +71,8 @@
       // Enable pusher logging - don't include this in production
       // Pusher.logToConsole = true;
 
-      var pusher = new Pusher('5216d64e3c7f9ef40358', {
-        encrypted: true,
-		cluster: 'ap2'
+      var pusher = new Pusher('API_KEY_HERE', {
+        encrypted: true
       });
 
       // Subscribe to the channel we specified in our Laravel Event
@@ -102,6 +101,7 @@
           </li>
         `;
         notifications.html(newNotificationHtml + existingNotifications);
+
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);

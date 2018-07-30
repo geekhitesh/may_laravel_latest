@@ -1,5 +1,7 @@
 <?php
 
+
+use Illuminate\Support\Facades\Redis;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,12 @@ Route::get('/', function () {
 });
 
 
+
+Route::get('/test-redis', function () {
+   $visits = Redis::incr('visits');
+   return $visits;
+});
+
 Route::get('/test-layout', function () {
     return view('layout_extend');
 });
@@ -27,7 +35,13 @@ Route::get('/product-category/insert','ProductCategoryController@insert');
 Route::get('/product-category/update','ProductCategoryController@update');
 Route::get('/product-category/delete','ProductCategoryController@delete');
 
+Route::get('/product/get/{id}','ProductController@get');
 
+
+Route::get('test-pusher', function () {
+    event(new App\Events\StatusLiked('Someone'));
+    return "Event has been sent!";
+});
 
 
 Route::get('/test', function () {
@@ -114,3 +128,25 @@ Route::get('/cache/destroy','CacheController@destroy');
 
 
 Route::get('/use-cache/get-categories','UseCache@getCategories');
+
+
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
+
+
+
+/*Route::get('/', function () {
+	$queue = Queue::push('LogMessage',array('message'=>'Time: '.time()));
+   	return $queue;
+});*/
+ 
+ 
+ 
+class LogMessage
+{
+	public function fire($job, $date)
+	{	 
+		File::append(app_path().'/queue.txt',$date['message'].PHP_EOL);
+		$job->delete();
+	}
+}
